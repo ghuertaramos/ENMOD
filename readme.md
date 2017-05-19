@@ -3,8 +3,8 @@
 # Ecological Niche Modeling on Docker
 
 
-Docker image and scripts to develop and analize ecological niche models (ENM). 
- This repository allows the user to download data from Global Biodiversity Information Facility (GBIF) to generate ocurrence maps, and ENMs on batch mode.
+Docker image to develop and analize ecological niche models (ENM). 
+ These scripts allows the user to download data from Global Biodiversity Information Facility (GBIF) to generate ocurrence files, ocurrence maps, and ENMs on batch mode.
  
 ### Current available functions are:
 
@@ -12,10 +12,10 @@ Docker image and scripts to develop and analize ecological niche models (ENM).
  Downloads records from GBIF database and produces `.csv` files for query species.
  
 **Clean.R**
- Eliminates duplicate records, Not applicabble Data (NA), and generates maps
+ Eliminates duplicate records, not applicabble data (NA), and generates maps
  
  **Rarf.R** 
- Excludes close records (less than 1km) using the grid method. It also  generates maps for output records. It is not used for species with less than 30 records by default.
+ Reduces the number of close records (less than 1km) using the grid method. It also  generates maps for output records. It is not used for species with less than 30 records by default.
 
 **Pseudo.R**
  Generates pseudoabsence points from record data.
@@ -31,20 +31,25 @@ Generates Ecological Niche Model for input species, it also generates output dat
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-This  series of scripts are intended to wrok as a single pipeline but using certain format will allows the user to use any script from own data.
+This  series of scripts are intended to work as a single pipeline but using the provided format for each script will allows the user to use own data.
 
 ### Prerequisites
 
-You will need a directory containing:
+- Docker software installed
 
-- An input file  "especies.csv"
+	Further information can be found on docker website:
+
+[![Docker](https://www.shippable.com/assets/images/logos/docker-cloud.jpg)](https://docs.docker.com/engine/installation/)
+
+
+- You will need a directory containing:
+
+ - An input file,  "especies.csv"
+
 (Required for Records.R)
 
 
-This file must include a column with the species names you are interested.
-
- Use the following format:
+This file must include a column with the species names you are interested.  Use the following format:
 
 |Species            |
 |--------------------|
@@ -53,44 +58,21 @@ This file must include a column with the species names you are interested.
 | Ipomoea suaveolens |
 
 
-- Raster files from [WorldClim Database ](http://www.worldclim.org/) in `.asc` format
+ - Raster files from [WorldClim Database ](http://www.worldclim.org/) in `.asc` format.
+
 (Required for Vars.R and Maxent.R)
 
-These files should be included in a directory named "rasters" inside ENMOD directory
-
-
-- Docker software installed
-
-Further information can be found on docker website:
-
-[![Docker](https://www.shippable.com/assets/images/logos/docker-cloud.jpg)](https://docs.docker.com/engine/installation/)
-
-
-
-
-- The scripts to be used
-
-For docker you will need the previous files and also:
-
-- Docker file
+The previous files should be included in a directory named "rasters".
 
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running
+For docker you will need the previous files and also:
 
-Say what the step will be
 
-```
-Give the example
-```
 
-And repeat
+- Docker file
 
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
+- The scripts to be used
 
 ## Running the tests
 
@@ -98,16 +80,21 @@ Explain how to run the automated tests for this system
 
 ### Break down into end to end tests
 
+docker pull enmod
+
+
 ```
-misdatos=/home/memo/Documents/ENMODTESTS/PruebaDocker
+mydatapath=/home/user/Documents/ENMOD/
 
-docker run -v $misdatos:/ENMOD enmod Rscript nombrescript.R
+docker run -v $mydatapath:/ENMOD enmod Rscript nombrescript.R
 
-docker run -v $misdatos:/ENMOD enmod Rscript Records.R
+docker run -v $mydatapath:/ENMOD enmod Rscript Records.R
 ```
 ## Known issues
 
-Add additional notes about how to deploy this on a live system
+In Records.R if query species has no records on gbif database script will fail. This can also ocurr if the species name is misspelled.
+
+Raster files must be trimmed to coincide with your species distribution. If climatic data is not available for a species record information won't be retrieved and there won't be an error.
 
 ## Contributing
 
