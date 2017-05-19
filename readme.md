@@ -1,21 +1,86 @@
 # ENMOD
-**Ecological Niche Modeling for Docker**
 
-One Paragraph of project description goes here
+#Ecological Niche Modeling on Docker
+
+
+Docker image and scripts to develop and analize ecological niche models (ENM). 
+ This repository allows the user to download data from Global Biodiversity Information Facility (GBIF) to generate ocurrence maps, and ENMs on batch mode.
+ 
+###Current available functions are:
+
+** Records.R**
+ Downloads records from GBIF database and produces .csv files for query species.
+ 
+** Clean.R**
+ Eliminates duplicate records, Not applicabble Data (NA), and generates maps
+ 
+ **Rarf.R** 
+ Excludes close records (less than 1km) using the grid method. It also  generates maps for output records. It is not used for species with less than 30 records by default.
+
+** Pseudo.R**
+ Generates pseudoabsence points from record data.
+
+ **Vars.R**
+ Extract climatic data from rasters based on species records.
+
+ **Corrls.R**
+ Generate correlation coefficients significancies and plots from climatic data.
+
+**Maxent.R**
+Generates Ecological Niche Model for input species, it also generates output data for model evaluation.
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+This  series of scripts are intended to wrok as a single pipeline but using certain format will allows the user to use any script from own data.
 
 ### Prerequisites
 
-Docker
+You will need a directory named "ENMOD" containing:
 
-What things you need to install the software and how to install them
 
-```
-Give examples
-```
+- The scripts to be used
+
+
+- An input file  "especies.csv"*
+
+This file contains the species names you are interested.
+ Use the following format:
+
+
+| Species | |
+| ------------- |:
+| Ipomoea sagittata     |
+| Ipomoea stans       |
+| Ipomoea suaveolens |
+
+| Species            |
+|--------------------|
+| Ipomoea sagittata  |
+| Ipomoea stans      |
+| Ipomoea suaveolens |
+
+*Required for Records.R
+
+- Raster files from WorldClim Database in .asc format*
+
+
+These files should be included in a directory named "rasters"
+
+*Required for Vars.R and Maxent.R
+
+Docker implementation
+
+For the docker option you will need the previous files and also:
+
+- Docker file
+
+- Docker software installed
+
+Further information can be found on docker website
+
+[![Docker](https://www.shippable.com/assets/images/logos/docker-cloud.jpg)](https://docs.docker.com/engine/installation/)
+
 
 ### Installing
 
@@ -75,7 +140,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Guillermo Huerta Ramos** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
