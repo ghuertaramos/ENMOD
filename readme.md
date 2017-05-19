@@ -26,7 +26,7 @@ Docker image to develop and analize ecological niche models (ENM).
  **Corrls.R**
  Generate correlation coefficients significancies and plots from climatic data.
  
-###Coming  soon:
+### Coming  soon:
   
  **Thinsp.R**
  Spatial rarefaction using ThinsSP algorithm (Aiello-Lammens *et al*. 2015)
@@ -36,7 +36,7 @@ Generate Ecological Niche Model for input species, it also generates output data
 
 ## Getting Started
 
-This series of scripts are intended to work as a single pipeline but using the provided format for each script will allows the user to use own data fro each function separately.
+This series of scripts are intended to work as a single pipeline but using the provided format for each script will allow to use own data for each function separately.
 
 ### Prerequisites
 
@@ -80,23 +80,25 @@ docker pull ghuertaramos/enmod:latest
 
 ## Running the tests
 
-Once the image is pulled from docker cloud 
+Once the image is pulled from docker cloud. 
 
-Preferably set a shortname for the path of your working directory
+- Preferably set a shortname for the path of your working directory
 
 ```
 mydata=/home/user/Documents/mydirectory/
 ```
 This directory must contain `especies.csv` file and `rasters` directory with 19 `.asc` files from worldclim database.
 
-Then run the scripts using the following commands:
+- Run the scripts using the following commands:
 
 ```
 docker run -ephemeral -v $mydatapath:/ENMOD/data ghuertaramos/enmod Rscript Records.R
 ```
+The command beaks down as:
+
 The flag `-ephemeral` deletes the container after the script execution.
 
-The local directory shortened in  `mydata` is mounted new container  using the flag `-v`
+The local directory shortened in  `mydata` is mounted in a new container  using the flag `-v`
 
 `:/ENMOD/data` is the name of the volume inside the container, this name must be mantained for the scripts to work.
 
