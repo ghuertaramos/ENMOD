@@ -15,7 +15,7 @@ library('jsonlite')
 library('tidyr')
 
 # set path for input (list of species) in this case the input is in the same working directory
-path = "../data/especies.csv"
+path = "./data/especies.csv"
 
 # read list of species
 species.names <- read.csv(path, header = T, colClasses=c('character'), sep = ",")
