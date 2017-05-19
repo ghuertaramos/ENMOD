@@ -4,34 +4,39 @@
 
 
 Docker image to develop and analize ecological niche models (ENM). 
- These scripts allows the user to download data from Global Biodiversity Information Facility (GBIF) to generate ocurrence files, ocurrence maps, and ENMs on batch mode.
+ These scripts allow the user to download data from Global Biodiversity Information Facility (GBIF) to generate ocurrence files, ocurrence maps, and ENMs on batch mode.
  
 ### Current available functions are:
 
 **Records.R**
- Downloads records from GBIF database and produces `.csv` files for query species.
+ Download records from GBIF database and produce `.csv` files for query species.
  
 **Clean.R**
- Eliminates duplicate records, not applicabble data (NA), and generates maps
+ Eliminate duplicate records, not applicabble data (NA), and generate maps
  
  **Rarf.R** 
- Reduces the number of close records (less than 1km) using the grid method. It also  generates maps for output records. It is not used for species with less than 30 records by default.
+ Reduce the number of records (less than 1km apart) using the grid method. It also generates maps for output records. This script is disabled for species with less than 30 records by default.
 
 **Pseudo.R**
- Generates pseudoabsence points from record data.
+ Generate pseudoabsence points from record data.
 
  **Vars.R**
  Extract climatic data from rasters based on species records.
 
  **Corrls.R**
  Generate correlation coefficients significancies and plots from climatic data.
+ 
+###Coming  soon:
+  
+ **Thinsp.R**
+ Spatial rarefaction using ThinsSP algorithm (Aiello-Lammens *et al*. 2015)
 
 **Maxent.R**
-Generates Ecological Niche Model for input species, it also generates output data for model evaluation.
+Generate Ecological Niche Model for input species, it also generates output data for model evaluation.
 
 ## Getting Started
 
-This  series of scripts are intended to work as a single pipeline but using the provided format for each script will allows the user to use own data.
+This series of scripts are intended to work as a single pipeline but using the provided format for each script will allows the user to use own data fro each function separately.
 
 ### Prerequisites
 
@@ -42,7 +47,7 @@ This  series of scripts are intended to work as a single pipeline but using the 
 [![Docker](https://www.shippable.com/assets/images/logos/docker-cloud.jpg)](https://docs.docker.com/engine/installation/)
 
 
-- You will need a directory containing:
+- You will need a working directory containing:
 
  - An input file,  "especies.csv"
 
@@ -66,40 +71,47 @@ The previous files should be included in a directory named "rasters".
 
 ### Installing
 
-For docker you will need the previous files and also:
+Dowload the latest image using the following command:
 
+```
+docker pull ghuertaramos/enmod:latest
+```
 
-
-- Docker file
-
-- The scripts to be used
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+Once the image is pulled from docker cloud 
 
-### Break down into end to end tests
-
-docker pull enmod
-
+Preferably set a shortname for the path of your working directory
 
 ```
-mydatapath=/home/user/Documents/ENMOD/
-
-docker run -v $mydatapath:/ENMOD enmod Rscript nombrescript.R
-
-docker run -v $mydatapath:/ENMOD enmod Rscript Records.R
+mydata=/home/user/Documents/mydirectory/
 ```
+This directory must contain `especies.csv` file and `rasters` directory with 19 `.asc` files from worldclim database.
+
+Then run the scripts using the following commands:
+
+```
+docker run -ephemeral -v $mydatapath:/ENMOD/data ghuertaramos/enmod Rscript Records.R
+```
+The flag `-ephemeral` deletes the container after the script execution.
+
+The local directory shortened in  `mydata` is mounted new container  using the flag `-v`
+
+`:/ENMOD/data` is the name of the volume inside the container, this name must be mantained for the scripts to work.
+
+`ghuertaramos/ENMOD` is the name of the image we previously dowloaded
+
+`Rscript Records.R` is the command to run the `Records.R` function, it can be changed for the other functions available on this image.
+
 ## Known issues
+
 
 In Records.R if query species has no records on gbif database script will fail. This can also ocurr if the species name is misspelled.
 
-Raster files must be trimmed to coincide with your species distribution. If climatic data is not available for a species record information won't be retrieved and there won't be an error.
+Rarf.R may take a while to finish the rarefaction, it is also very important to noctice that current script only works for records in the americas. This beahaviour is caused because the grid coordinates are fixed.
 
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
+Raster files must be trimmed to coincide with your species distribution. If climatic data is not available for a species record information won't be retrieved.
 
 ## Authors
 
