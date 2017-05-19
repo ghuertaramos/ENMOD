@@ -24,10 +24,10 @@ species.names <- read.csv(path, header = T, colClasses=c('character'), sep = ","
 species.names<-t(species.names)
 
 # generate directory in current path to store generated files
-dir.create("./ENMOD/records")
+dir.create("./records")
 
 # set previous path
-setwd("./ENMOD/records")
+setwd("./records")
 for(i in species.names) {
 
 # separate genus and species for the gbif function

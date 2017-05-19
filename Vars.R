@@ -1,6 +1,6 @@
 #! /usr/bin/Rscript
 ## Script to extract climatic data from rasters
-## raster files (.asc) must be provided by the user on a directory named "rasters" on "ENMOD"
+## raster files (.asc) must be provided by the user on a directory named "rasters" on working directory
 ## Guillermo Huerta Ramos
 
 # start with a new environment
@@ -10,19 +10,19 @@ rm(list = ls())
 library('raster')
 
 # load raster files
-rasters<- list.files("./ENMOD/rasters",pattern='asc', full.names=TRUE )
+rasters<- list.files("./rasters",pattern='asc', full.names=TRUE )
 # stack vectors to concatenate multiple vectors into a single vector along with a factor indicating where each observation originated.
 print(paste0("stacking vectors to create predictors variable"))
 predictors<-stack(rasters)
 
 # get file names from input data to use for the loop
-file.names <- dir("./ENMOD/rarf")
+file.names <- dir("./rarf")
 
 # this directory will contain csv files with final data
-dir.create("./ENMOD/vars")
+dir.create("./vars")
 
 # set working directory
-setwd("./ENMOD/vars")
+setwd("./vars")
 
 for(i in file.names){
   

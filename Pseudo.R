@@ -11,15 +11,15 @@ library("dismo")
 library("maptools")
 
 # get file names from input data to use for the loop
-file.names <- dir("./ENMOD/rarf")
+file.names <- dir("./rarf")
 
 # this directory will contain csv files with final data
-dir.create("./ENMOD/pseudo")
+dir.create("./pseudo")
 
 # this directory will contain png files with presence and pseudoabsence points
-dir.create("./ENMOD/pseudomaps")
+dir.create("./pseudomaps")
 
-setwd("./ENMOD/pseudo")
+setwd("./pseudo")
 
 for (i in file.names){
 setwd("../rarf")

@@ -11,7 +11,7 @@ library('dismo')
 library('raster')
 library('rJava')
 
-dir.create("./ENMOD/maxent")
+dir.create("./maxent")
 
 rasters<- list.files("../capas",pattern='asc', full.names=TRUE )
 
@@ -19,7 +19,7 @@ predictors<-stack(rasters)
 
 species.names <- dir("./rarf")
 
-setwd("./ENMOD/maxent")
+setwd("./maxent")
 
 for (i in species.names){
   
@@ -59,8 +59,8 @@ e = evaluate(test_p, test_a,me,predictors)
 #threshold(e)
 getwd()
 setwd(i)
-dir.create("./ENMOD/evaluation")
-setwd("./ENMOD/evaluation")
+dir.create("./evaluation")
+setwd("./evaluation")
 png(filename=i)
 plot(e, 'ROC')
 plot(e, 'TPR')

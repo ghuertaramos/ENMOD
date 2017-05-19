@@ -10,16 +10,16 @@ rm(list = ls())
 library('corrplot')
 
 # get file names from input data to use for the loop
-file.names <- dir("./ENMOD/vars")
+file.names <- dir("./vars")
 
 # this directory will contain csv files with final data
-dir.create("./ENMOD/corrls")
+dir.create("./corrls")
 
 # this directory will contain png files with final data
-dir.create("./ENMOD/corrlsgraphs")
+dir.create("./corrlsgraphs")
 
 # set working directory to begin loop
-setwd("./ENMOD/corrlsgraphs")
+setwd("./corrlsgraphs")
 
 for(x in file.names){
   

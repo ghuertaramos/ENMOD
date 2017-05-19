@@ -13,12 +13,12 @@ library("maptools")
 
 # create new directories
 # this directory will contain csv files with final records
-dir.create("./ENMOD/clean")
+dir.create("./clean")
 
 # this directory will contain png files with final records
-dir.create("./ENMOD/cleanmaps")
+dir.create("./cleanmaps")
 # change working directory
-setwd("./ENMOD/clean")
+setwd("./clean")
 # get file names from input data to use for the loop
 file.names <- dir("../records")
 
