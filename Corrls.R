@@ -2,7 +2,7 @@
 ## Script to generate correlation coefficients significancies and plots from climatic data
 ## Guillermo Huerta Ramos
 
-# start with a fresh brain
+# start with a new environment
 rm(list = ls())
 
 # load libraries

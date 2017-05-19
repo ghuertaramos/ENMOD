@@ -3,7 +3,7 @@
 ## It works with species with more than 30 records
 ## Guillermo Huerta Ramos
 
-# start with a fresh brain
+# start with a new environment
 rm(list = ls())
 
 #install.packages('maptools')

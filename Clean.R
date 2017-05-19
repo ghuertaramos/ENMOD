@@ -3,7 +3,7 @@
 ## this script also generates graphs to visualize output records.
 ## Guillermo Huerta Ramos
 
-# start with a fresh brain
+# start with a new environment
 rm(list = ls())
 
 #install.packages('maptools')

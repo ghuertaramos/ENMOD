@@ -3,7 +3,7 @@
 ## raster files (.asc) must be provided by the user on a directory named "rasters" on "ENMOD"
 ## Guillermo Huerta Ramos
 
-# start with a fresh brain
+# start with a new environment
 rm(list = ls())
 
 # load libraries

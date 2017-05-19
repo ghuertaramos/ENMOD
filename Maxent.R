@@ -1,10 +1,8 @@
 #! /usr/bin/Rscript
-# sudo R CMD javareconf
-#export LD_LIBRARY_PATH=/usr/lib/jvm/jre/lib/amd64:/usr/lib/jvm/jre/lib/amd64/default
-## Script to generate ENM 
+## Script to generate ENM and evaluations 
 ## Guillermo Huerta Ramos
 
-# start with a fresh brain
+# start with a new environment
 rm(list = ls())
 
 # load libraries

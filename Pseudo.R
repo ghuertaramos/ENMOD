@@ -1,9 +1,9 @@
 #! /usr/bin/Rscript
 ## Script to generate pseudoabsence points from record data
-## easch new file will contain 1000 pseudoabsence records
+## each new file will contain 1000 pseudoabsence records
 ## Guillermo Huerta Ramos
 
-# start with a fresh brain
+# start with a new environment
 rm(list = ls())
 
 # load libraries

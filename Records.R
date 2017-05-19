@@ -2,9 +2,10 @@
 ## Script to download records from gbif.org database
 ## Guillermo Huerta Ramos
 
-# start with a fresh brain
+# start with a new environment
 rm(list = ls())
 
+# Uncomment if using script outside docker
 # install.packages(c("dismo","maptools","jsonlite","tidyr",repos = "http://cran.rstudio.com/"))
 
 # load libraries

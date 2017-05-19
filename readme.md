@@ -1,23 +1,23 @@
 # ENMOD
 
-#Ecological Niche Modeling on Docker
+# Ecological Niche Modeling on Docker
 
 
 Docker image and scripts to develop and analize ecological niche models (ENM). 
  This repository allows the user to download data from Global Biodiversity Information Facility (GBIF) to generate ocurrence maps, and ENMs on batch mode.
  
-###Current available functions are:
+### Current available functions are:
 
-** Records.R**
- Downloads records from GBIF database and produces .csv files for query species.
+**Records.R**
+ Downloads records from GBIF database and produces `.csv` files for query species.
  
-** Clean.R**
+**Clean.R**
  Eliminates duplicate records, Not applicabble Data (NA), and generates maps
  
  **Rarf.R** 
  Excludes close records (less than 1km) using the grid method. It also  generates maps for output records. It is not used for species with less than 30 records by default.
 
-** Pseudo.R**
+**Pseudo.R**
  Generates pseudoabsence points from record data.
 
  **Vars.R**
@@ -42,42 +42,35 @@ You will need a directory named "ENMOD" containing:
 - The scripts to be used
 
 
-- An input file  "especies.csv"*
+- An input file  "especies.csv"
+(Required for Records.R)
+
 
 This file contains the species names you are interested.
  Use the following format:
 
-
-| Species | |
-| ------------- |:
-| Ipomoea sagittata     |
-| Ipomoea stans       |
-| Ipomoea suaveolens |
-
-| Species            |
+|Species            |
 |--------------------|
 | Ipomoea sagittata  |
 | Ipomoea stans      |
 | Ipomoea suaveolens |
 
-*Required for Records.R
 
-- Raster files from WorldClim Database in .asc format*
+- Raster files from [WorldClim Database ](http://www.worldclim.org/) in `.asc` format
+(Required for Vars.R and Maxent.R)
+
+These files should be included in a directory named "rasters" inside ENMOD directory
 
 
-These files should be included in a directory named "rasters"
+**Docker implementation**
 
-*Required for Vars.R and Maxent.R
-
-Docker implementation
-
-For the docker option you will need the previous files and also:
+For docker you will need the previous files and also:
 
 - Docker file
 
 - Docker software installed
 
-Further information can be found on docker website
+Further information can be found on docker website:
 
 [![Docker](https://www.shippable.com/assets/images/logos/docker-cloud.jpg)](https://docs.docker.com/engine/installation/)
 
@@ -112,37 +105,19 @@ Explain what these tests test and why
 Give an example
 ```
 
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
+## Known issues
 
 Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
 
 ## Contributing
 
 Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## Authors
 
-* **Guillermo Huerta Ramos** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Guillermo Huerta Ramos** - *Initial work* - [ghuertaramos](https://github.com/ghuertaramos)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
