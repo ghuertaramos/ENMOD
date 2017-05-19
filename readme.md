@@ -36,17 +36,14 @@ This  series of scripts are intended to wrok as a single pipeline but using cert
 
 ### Prerequisites
 
-You will need a directory named "ENMOD" containing:
-
-
-- The scripts to be used
-
+You will need a directory containing:
 
 - An input file  "especies.csv"
 (Required for Records.R)
 
 
-This file contains the species names you are interested.
+This file must include a column with the species names you are interested.
+
  Use the following format:
 
 |Species            |
@@ -62,18 +59,20 @@ This file contains the species names you are interested.
 These files should be included in a directory named "rasters" inside ENMOD directory
 
 
-**Docker implementation**
-
-For docker you will need the previous files and also:
-
-- Docker file
-
 - Docker software installed
 
 Further information can be found on docker website:
 
 [![Docker](https://www.shippable.com/assets/images/logos/docker-cloud.jpg)](https://docs.docker.com/engine/installation/)
 
+
+
+
+- The scripts to be used
+
+For docker you will need the previous files and also:
+
+- Docker file
 
 ### Installing
 
@@ -99,12 +98,13 @@ Explain how to run the automated tests for this system
 
 ### Break down into end to end tests
 
-Explain what these tests test and why
-
 ```
-Give an example
-```
+misdatos=/home/memo/Documents/ENMODTESTS/PruebaDocker
 
+docker run -v $misdatos:/ENMOD enmod Rscript nombrescript.R
+
+docker run -v $misdatos:/ENMOD enmod Rscript Records.R
+```
 ## Known issues
 
 Add additional notes about how to deploy this on a live system
