@@ -82,14 +82,14 @@ docker pull ghuertaramos/enmod:latest
 
 Once the image is pulled from docker cloud. 
 
-- Preferably set a shortname for the path of your working directory
+- Set a shortname for the path of your working directory
 
 ```
 mydata=/home/user/Documents/mydirectory/
 ```
 This directory must contain `especies.csv` file and `rasters` directory with 19 `.asc` files from worldclim database.
 
-- Run the scripts using the following commands:
+- Run the scripts using the following command:
 
 ```
 docker run -ephemeral -v $mydatapath:/ENMOD/data ghuertaramos/enmod Rscript Records.R
