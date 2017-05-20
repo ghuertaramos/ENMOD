@@ -12,7 +12,7 @@ Docker image to develop and analize ecological niche models (ENM).
  Download records from GBIF database and produce `.csv` files for query species.
  
 **Clean.R**
- Eliminate duplicate records, not applicabble data (NA), and generate maps
+ Eliminate duplicate records, not applicable data (NA), and generate maps
  
  **Rarf.R** 
  Reduce the number of records (less than 1km apart) using the grid method. It also generates maps for output records. This script is disabled for species with less than 30 records by default.
@@ -27,6 +27,9 @@ Docker image to develop and analize ecological niche models (ENM).
  Generate correlation coefficients significancies and plots from climatic data.
  
 ### Coming  soon:
+
+**Merge.R**
+Merge data from other databases.
   
  **Thinsp.R**
  Spatial rarefaction using ThinsSP algorithm (Aiello-Lammens *et al*. 2015)
@@ -37,6 +40,12 @@ Generate Ecological Niche Model for input species, it also generates output data
 ## Getting Started
 
 This series of scripts are intended to work as a single pipeline but using the provided format for each script will allow to use own data for each function separately.
+
+**ENMOD Workflow**
+
+
+![ ](https://github.com/ghuertaramos/ENMOD/blob/master/mdneflow.png  "Workflow")
+
 
 ### Prerequisites
 
