@@ -41,9 +41,6 @@ Generate Ecological Niche Model for input species, it also generates output data
 
 This series of scripts are intended to work as a single pipeline but using the provided format for each script will allow to use own data for each function separately.
 
-**ENMOD Workflow**
-
-
 ![ ](https://github.com/ghuertaramos/ENMOD/blob/master/mdneflow.png  "Workflow")
 
 
