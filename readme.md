@@ -26,6 +26,10 @@ Docker image to develop and analize ecological niche models (ENM).
  **Corrls.R**
  Generate correlation coefficients significancies and plots from climatic data.
  
+ **Maxent.R**
+Generate Ecological Niche Model for input species, it also generates output data for model evaluation.
+
+ 
 ### Coming  soon:
 
 **Merge.R**
@@ -33,9 +37,6 @@ Merge data from other databases.
   
  **Thinsp.R**
  Spatial rarefaction using ThinsSP algorithm (Aiello-Lammens *et al*. 2015)
-
-**Maxent.R**
-Generate Ecological Niche Model for input species, it also generates output data for model evaluation.
 
 ## Getting Started
 
