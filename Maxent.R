@@ -12,15 +12,15 @@ library('raster')
 library('rJava')
 
 
-rasters<- list.files("./rasters",pattern='asc', full.names=TRUE )
+rasters<- list.files("./data/rasters",pattern='asc', full.names=TRUE )
 
 predictors<-stack(rasters)
 
-species.names <- dir("./rarf")
+species.names <- dir("./data/rarf")
 
-dir.create("./maxent")
+dir.create("./data/maxent")
 
-setwd("./maxent")
+setwd("./data/maxent")
 
 for (i in species.names){
   
