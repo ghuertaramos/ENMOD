@@ -11,15 +11,15 @@ library("dismo")
 library("maptools")
 
 # get file names from input data to use for the loop
-file.names <- dir("./rarf")
+file.names <- dir("./data/data_out/rarf")
 
 # this directory will contain csv files with final data
-dir.create("./pseudo")
+dir.create("./data/data_out/pseudo")
 
 # this directory will contain png files with presence and pseudoabsence points
-dir.create("./pseudomaps")
+dir.create("./data/data_out/pseudomaps")
 
-setwd("./pseudo")
+setwd("./data/data_out/pseudo")
 
 for (i in file.names){
 setwd("../rarf")
@@ -85,3 +85,4 @@ print(paste0("writing peudoabscence file for ", i))
 write.csv(bg,i)
 detach(subs)
 }
+print(paste0("Job finished"))

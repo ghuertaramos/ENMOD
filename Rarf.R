@@ -13,12 +13,12 @@ library("maptools")
 
 # create new directories
 # this directory will contain csv files with final records
-dir.create("./rarf")
+dir.create("./data/data_out/rarf")
 
 # this directory will contain png files with final records
-dir.create("./rarfmaps")
+dir.create("./data/data_out/rarfmaps")
 
-setwd("./rarf")
+setwd("./data/data_out/rarf")
 
 # get file names from input data to use for the loop
 file.names <- dir("../clean")
@@ -72,7 +72,7 @@ for(i in file.names){
     data(wrld_simpl)
     xlim=c(minx, maxx)
     ylim=c(miny, maxy)
-    print(paste0("writing plot file for ", i))
+    print(paste0("drawing map for ", i))
     png(filename=i)
     
     plot(wrld_simpl,xlim=xlim, ylim=ylim, axes=T)
@@ -131,7 +131,7 @@ for(i in file.names){
     data(wrld_simpl)
     xlim=c(minx, maxx)
     ylim=c(miny, maxy)
-    print(paste0("writing plot file for ", i))
+    print(paste0("drawing map file for ", i))
     png(i)
     
     plot(wrld_simpl,xlim=xlim, ylim=ylim, axes=T)
@@ -143,3 +143,4 @@ for(i in file.names){
   }
   detach(locs)
 }
+print(paste0("Job finished"))

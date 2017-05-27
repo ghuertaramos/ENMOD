@@ -13,12 +13,12 @@ library("maptools")
 
 # create new directories
 # this directory will contain csv files with final records
-dir.create("./clean")
+dir.create("./data/data_out/clean")
 
 # this directory will contain png files with final records
-dir.create("./cleanmaps")
+dir.create("./data/data_out/cleanmaps")
 # change working directory
-setwd("./clean")
+setwd("./data/data_out/clean")
 # get file names from input data to use for the loop
 file.names <- dir("../records")
 
@@ -85,7 +85,7 @@ for(i in file.names){
     data(wrld_simpl)
     xlim=c(minx, maxx)
     ylim=c(miny, maxy)
-    print(paste0("writing plot file for ", i))
+    print(paste0("drawing map for ", i))
     png(i)
     plot(wrld_simpl,xlim=xlim, ylim=ylim, axes=T)
     box()
@@ -93,4 +93,6 @@ for(i in file.names){
     points(lon,lat, col='orange', pch=20, cex=0.75)
     dev.off()
     detach(locs)
-  }
+}
+
+print(paste0("Job finished"))

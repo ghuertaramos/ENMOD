@@ -6,21 +6,23 @@
 rm(list = ls())
 
 # load libraries
-#install.packages("rJava")
+install.packages("rJava")
 library('dismo')
 library('raster')
 library('rJava')
 
-
-rasters<- list.files("./data/rasters",pattern='asc', full.names=TRUE )
-
+print(paste0("reading raster files"))
+# read rasters
+rasters<- list.files("../data/data_in/rasters",pattern='asc', full.names=TRUE )
+# stack vectors to concatenate multiple vectors into a single vector along with a factor indicating where each observation originated.
+print(paste0("stacking rasters"))
 predictors<-stack(rasters)
 
-species.names <- dir("./data/rarf")
+species.names <- dir("./data/data_out/rarf")
 
-dir.create("./data/maxent")
+dir.create("./data/data_out/maxent")
 
-setwd("./data/maxent")
+setwd("./data/data_out/maxent")
 
 for (i in species.names){
   
@@ -33,7 +35,7 @@ locs <-subset(locs, select= c(lon,lat))
 setwd("../pseudo")
 
 bglocs <- read.table(i, header = T, sep = ",",stringsAsFactors = F, row.names="X")
-
+print(paste0("generating data groups"))
 colnames(bglocs)<-c('lon','lat')
 
 group_p=kfold(locs,5)
@@ -50,15 +52,15 @@ test_p = locs[group_p==test, c("lon","lat")]
 test_a = bglocs[group_a==test, c("lon","lat")]
 
 setwd("../maxent")
-
+# crate new directory to contain model
 dir.create(i)
 
+print(paste0("generating model for", i))
 me<-maxent(predictors,p=train_p, a=train_a,remove.duplicates=T,path=i)
-
+print(paste0("generating evaluation data for ", i, " model"))
 e = evaluate(test_p, test_a,me,predictors)
 
 #threshold(e)
-getwd()
 setwd(i)
 dir.create("./evaluation")
 setwd("./evaluation")
@@ -69,7 +71,8 @@ boxplot(e)
 density(e)
 dev.off()
 setwd("../")
-?predict
+
 pred_me = predict(me, predictors, filename=i)
+
 setwd("../")
 }

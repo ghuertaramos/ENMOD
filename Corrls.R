@@ -10,16 +10,16 @@ rm(list = ls())
 library('corrplot')
 
 # get file names from input data to use for the loop
-file.names <- dir("./vars")
+file.names <- dir("./data/data_out/vars")
 
 # this directory will contain csv files with final data
-dir.create("./corrls")
+dir.create("./data/data_out/corrls")
 
 # this directory will contain png files with final data
-dir.create("./corrlsgraphs")
+dir.create("./data/data_out/corrlsgraphs")
 
 # set working directory to begin loop
-setwd("./corrlsgraphs")
+setwd("./data/data_out/corrlsgraphs")
 
 for(x in file.names){
   
@@ -67,3 +67,4 @@ png(filename=x)
 corrplot(varscor,method = "number",type = "lower", insig = "blank", p.mat = res1[[1]], sig.level=0.1, number.cex=0.6)
 dev.off()
 }
+print(paste0("Job finished"))

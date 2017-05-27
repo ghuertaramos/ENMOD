@@ -10,19 +10,19 @@ rm(list = ls())
 library('raster')
 
 # load raster files
-rasters<- list.files("./rasters",pattern='asc', full.names=TRUE )
+rasters<- list.files("./data/data_in/rasters",pattern='asc', full.names=TRUE )
 # stack vectors to concatenate multiple vectors into a single vector along with a factor indicating where each observation originated.
 print(paste0("stacking vectors to create predictors variable"))
 predictors<-stack(rasters)
 
 # get file names from input data to use for the loop
-file.names <- dir("./rarf")
+file.names <- dir("./data/data_out/rarf")
 
 # this directory will contain csv files with final data
-dir.create("./vars")
+dir.create("./data/data_out/vars")
 
 # set working directory
-setwd("./vars")
+setwd("./data/data_out/vars")
 
 for(i in file.names){
   
@@ -43,3 +43,4 @@ setwd("../vars")
 print(paste0("writing climatic variables file for ", i))
 write.csv(presvals,i)
 }
+print(paste0("Job finished"))

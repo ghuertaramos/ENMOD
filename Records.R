@@ -15,7 +15,7 @@ library('jsonlite')
 library('tidyr')
 
 # set path for input (list of species) in this case the input is in the same working directory
-path = "./data/especies.csv"
+path = "./data/data_in/species.csv"
 
 # read list of species
 species.names <- read.csv(path, header = T, colClasses=c('character'), sep = ",")
@@ -24,10 +24,10 @@ species.names <- read.csv(path, header = T, colClasses=c('character'), sep = ","
 species.names<-t(species.names)
 
 # generate directory in current path to store generated files
-dir.create("./records")
+dir.create("./data/data_out/records")
 
 # set previous path
-setwd("./records")
+setwd("./data/data_out/records")
 for(i in species.names) {
 
 # separate genus and species for the gbif function

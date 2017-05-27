@@ -30,11 +30,11 @@ Docker image to develop and analize ecological niche models (ENM).
 
  **Corrls.R**
  
- Generate correlation coefficients significancies and plots from climatic data.
+ Generate correlation coefficients, significancies and plots from climatic data.
  
  **Maxent.R**
  
-Generate Ecological Niche Model for input species, it also generates output data for model evaluation.
+Generate Ecological Niche Model for input species, it also generates output data and graphs for model evaluation.
 
  
 ### Coming  soon:
@@ -49,11 +49,17 @@ Merge data from other databases.
 
 ## Getting Started
 
+The scripts are intended to work as a single pipeline. Future versions will include compability with user provided databases.
+
+Generating ENMs is no easy task, it demands a lot of knowledge on species biology, niche theory and niche modeling methodology. So, carefuly evaluate every step of the pipeline and  tweak the scripts to suit your own needs. Current final ENMs are suitable at best for exploratory analysis 
+
+Please be aware this is work in progress. Thus scripts may be prone to bugs and errors. 
+
+Current version was designed as a final project for the course ["Introduction to bioinformatics and reproducible research  for genetic analyses"](https://github.com/AliciaMstt/BioinfInvRepro2017-II) by Alicia Yanes Mastretta and Azalea García 
 
 
-The scripts are intended to work as a single pipeline. Future versions will include compability with user provides databases.
 
- A tutorial on the use of ENMOD is available at `tutorial.md`
+ A tutorial on the use of ENMOD is available at [tutorial.md]()
 
 ![ ](https://github.com/ghuertaramos/ENMOD/blob/master/mdneflow.png  "Workflow")
 
@@ -71,7 +77,7 @@ The scripts are intended to work as a single pipeline. Future versions will incl
 
  - An input file,  "especies.csv"
 
-(Required for Records.R)
+(Required for `Records.R`)
 
 
 This file must include a column with the species names you are interested.  Use the following format:
@@ -84,7 +90,9 @@ This file must include a column with the species names you are interested.  Use 
 
  - Raster files from [WorldClim Database ](http://www.worldclim.org/) in `.asc` format in a directory named "rasters".
 
-(Required for Vars.R and Maxent.R)
+Raster files must be clipped to coincide with your species distribution. If species records fall outside your raster coordinates  you will get NA data.
+
+(Required for `Vars.R` and `Maxent.R`)
 
 
 ### Installing
@@ -127,14 +135,12 @@ The local directory shortened in  `mydata` is mounted in a new container  using 
 ## Known issues
 
 
-In Records.R if query species has no records on gbif database script will fail. This can also ocurr if the species name is misspelled.
+In `Records.R` if query species has no records on gbif database, the script will fail. This can also ocurr if the species name is misspelled.
 
-Rarf.R may take a while to finish, it is also very important to notice that current script only works for records in the americas.
+`Rarf.R` may take a long time to finish, it is also very important to notice that current script only works for records in the americas.
 The exact ranges are:
-Longitud: -131,-38
+Longitude: -131,-38
 Latitude: -49,55
-
-Raster files must be clipped to coincide with your species distribution. If species records fall outside your raster you will get NA data.
 
 ## Authors
 
@@ -143,9 +149,9 @@ Raster files must be clipped to coincide with your species distribution. If spec
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/ghuertaramos/ENMOD/blob/master/LICENSE.md) file for details
 
-##Citations
+## Citations
 
 Hadley Wickham (2017). tidyr: Easily Tidy Data with 'spread()'
   and 'gather()' Functions. R package version 0.6.3.
@@ -173,6 +179,8 @@ Taiyun Wei and Viliam Simko (2016). corrplot: Visualization of a
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+* To anyone who's code was used (mentioned in each script)
+* [Alicia Mastretta Yanes](https://github.com/AliciaMstt) For commentaries and guidance
+* [Azalea Guerra García](https://github.com/AzaleaGuerra)  For commentaries and guidance
+* [Ruth Delgado](https://github.com/REDD1326) For commentaries and troubleshooting
+
