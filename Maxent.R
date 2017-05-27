@@ -11,13 +11,14 @@ library('dismo')
 library('raster')
 library('rJava')
 
-dir.create("./maxent")
 
-rasters<- list.files("../capas",pattern='asc', full.names=TRUE )
+rasters<- list.files("./rasters",pattern='asc', full.names=TRUE )
 
 predictors<-stack(rasters)
 
 species.names <- dir("./rarf")
+
+dir.create("./maxent")
 
 setwd("./maxent")
 

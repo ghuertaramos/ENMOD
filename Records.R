@@ -6,7 +6,7 @@
 rm(list = ls())
 
 # Uncomment if using script outside docker
-# install.packages(c("dismo","maptools","jsonlite","tidyr",repos = "http://cran.rstudio.com/"))
+#install.packages(c("dismo","maptools","jsonlite","tidyr",repos = "http://cran.rstudio.com/"))
 
 # load libraries
 library('dismo')
@@ -33,24 +33,19 @@ for(i in species.names) {
 # separate genus and species for the gbif function
   singlespecies<-as.data.frame(i)
   binarynames<-separate(singlespecies,"i",c("genus", "species"), sep = " ", remove=T)
-
-# retrieve all occurrences of selected species from gbif
+  
+  # retrieve all occurrences of selected species from gbif
   print(paste0("retrieving records for ", i))
   especies<-gbif(binarynames$genus, binarynames$species, geo=T, removeZeros=T) 
-
+  
 # subsetting with relevant fields
-# dirty solution to a problem with column length.
-  write.table(especies, "intermedio.csv", sep="\t")
-  espframe<-read.table("intermedio.csv", sep="\t", fill = T)
-  attach(espframe)
-  esprelevant <- subset(espframe,select=c(lon, lat, locality, gbifID, elevation, identifiedBy, identifier, recordNumber,occurrenceRemarks))
+  attach(especies)
+  esprelevant <- subset(especies,select=c(lon, lat, locality, gbifID, elevation, identifiedBy, identifier, recordNumber,occurrenceRemarks))
 
 # generate new file 
   print(paste0("writing record file"))
    write.csv(esprelevant,i)
-   detach(espframe)
+   detach(especies)
 }
 
-# delete intermediate file from dirty solution
-file.remove("./intermedio.csv")
 print(paste0("Job finished"))
