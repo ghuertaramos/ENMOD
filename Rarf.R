@@ -80,6 +80,7 @@ for(i in file.names){
 # plot the presence points
     points(lon,lat, col='orange', pch=20, cex=0.75)
     dev.off()
+    detach(locs)
   } else{
 # rarefaction
 # taken from Jeremy Yoder
@@ -132,15 +133,14 @@ for(i in file.names){
     xlim=c(minx, maxx)
     ylim=c(miny, maxy)
     print(paste0("drawing map file for ", i))
+    attach(subs)
     png(i)
-    
     plot(wrld_simpl,xlim=xlim, ylim=ylim, axes=T)
     box()
     # plot the presence points
     points(lon,lat, col='orange', pch=20, cex=0.75)
     dev.off()
-    
+    detach(subs)
   }
-  detach(locs)
 }
 print(paste0("Job finished"))

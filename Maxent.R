@@ -6,14 +6,13 @@
 rm(list = ls())
 
 # load libraries
-install.packages("rJava")
 library('dismo')
 library('raster')
 library('rJava')
 
 print(paste0("reading raster files"))
 # read rasters
-rasters<- list.files("../data/data_in/rasters",pattern='asc', full.names=TRUE )
+rasters<- list.files("./data/data_in/rasters",pattern='asc', full.names=TRUE )
 # stack vectors to concatenate multiple vectors into a single vector along with a factor indicating where each observation originated.
 print(paste0("stacking rasters"))
 predictors<-stack(rasters)
@@ -73,6 +72,8 @@ dev.off()
 setwd("../")
 
 pred_me = predict(me, predictors, filename=i)
-
+png(filename=i)
+plot(pred_me, 1, cex=0.5, legend=T, mar=par("mar"), xaxt="n", yaxt="n", main="Predicted presence")
+dev.off()
 setwd("../")
 }

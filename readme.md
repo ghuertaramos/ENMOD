@@ -51,9 +51,9 @@ Merge data from other databases.
 
 The scripts are intended to work as a single pipeline. Future versions will include compability with user provided databases.
 
-Generating ENMs is no easy task, it demands a lot of knowledge on species biology, niche theory and niche modeling methodology. So, carefuly evaluate every step of the pipeline and  tweak the scripts to suit your own needs. Current final ENMs are suitable at best for exploratory analysis 
+Generating ENMs is not an easy task, it demands a lot of knowledge on species biology, niche theory and niche modeling methodology. Please, carefuly evaluate every step of the pipeline and  tweak the scripts to suit your own needs. Current final ENMs are suitable at best for exploratory analysis 
 
-Please be aware this is work in progress. Thus scripts may be prone to bugs and errors. 
+Be aware this is work in progress. Thus scripts may be prone to bugs and errors. 
 
 Current version was designed as a final project for the course ["Introduction to bioinformatics and reproducible research  for genetic analyses"](https://github.com/AliciaMstt/BioinfInvRepro2017-II) by Alicia Yanes Mastretta and Azalea García 
 
