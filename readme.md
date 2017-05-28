@@ -59,7 +59,7 @@ Current version was designed as a final project for the course ["Introduction to
 
 
 
- A tutorial on the use of ENMOD is available at [tutorial.md]()
+ A tutorial on the use of ENMOD is available at [tutorial.md](https://github.com/ghuertaramos/ENMOD/blob/master/Tutorial.md)
 
 ![ ](https://github.com/ghuertaramos/ENMOD/blob/master/mdneflow.png  "Workflow")
 

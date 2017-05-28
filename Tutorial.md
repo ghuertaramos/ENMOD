@@ -12,7 +12,7 @@ For this project we'll work with 4 species in the Genus *Mammillaria* a group of
 
  *Mammillaria haageana*
 
-- For this tutorial will use the working directory `Mammillaria` :
+- We will use the working directory `Mammillaria` :
 
 `home/user/documents/Mammillaria`
 
