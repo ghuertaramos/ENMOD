@@ -51,9 +51,9 @@ Merge data from other databases.
 
 The scripts are intended to work as a single pipeline. Future versions will include compability with user provided databases.
 
-Generating ENMs is not an easy task, it demands a lot of knowledge on species biology, niche theory and niche modeling methodology. Please, carefuly evaluate every step of the pipeline and  tweak the scripts to suit your own needs. Current final ENMs are suitable at best for exploratory analysis 
-
 Be aware this is work in progress. Thus scripts may be prone to bugs and errors. 
+
+Generating ENMs is not an easy task, it demands a lot of knowledge on species biology, niche theory and niche modeling methodology. Please, carefuly evaluate every step of the pipeline and  tweak the scripts to suit your own needs. Current final ENMs are suitable at best for exploratory analysis 
 
 Current version was designed as a final project for the course ["Introduction to bioinformatics and reproducible research  for genetic analyses"](https://github.com/AliciaMstt/BioinfInvRepro2017-II) by Alicia Yanes Mastretta and Azalea García 
 
@@ -118,11 +118,11 @@ This directory must contain `especies.csv` file and `rasters` directory with 19 
 - Run the scripts using the following command:
 
 ```
-docker run -ephemeral -v $mydatapath:/ENMOD/data ghuertaramos/enmod Rscript Records.R
+docker run --rm -v $mydatapath:/ENMOD/data ghuertaramos/enmod Rscript Records.R
 ```
 The command beaks down as:
 
-The flag `-ephemeral` deletes the container after the script execution.
+The flag `--rm` deletes the container after the script execution.
 
 The local directory shortened in  `mydata` is mounted in a new container  using the flag `-v`
 
@@ -183,4 +183,4 @@ Taiyun Wei and Viliam Simko (2016). corrplot: Visualization of a
 * [Alicia Mastretta Yanes](https://github.com/AliciaMstt) For commentaries and guidance
 * [Azalea Guerra García](https://github.com/AzaleaGuerra)  For commentaries and guidance
 * [Ruth Delgado](https://github.com/REDD1326) For commentaries and troubleshooting
-
+* [Jeremy Yoder](https://github.com/jbyoder) For code and guidance

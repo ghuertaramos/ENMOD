@@ -54,7 +54,7 @@ setwd("../maxent")
 # crate new directory to contain model
 dir.create(i)
 
-print(paste0("generating model for", i))
+print(paste0("generating model for ", i))
 me<-maxent(predictors,p=train_p, a=train_a,remove.duplicates=T,path=i)
 print(paste0("generating evaluation data for ", i, " model"))
 e = evaluate(test_p, test_a,me,predictors)

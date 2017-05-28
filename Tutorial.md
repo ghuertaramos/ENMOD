@@ -4,27 +4,14 @@
 
 # Tutorial
 
-### Docker
-
-![https://upload.wikimedia.org/wikipedia/commons/7/79/Docker_(container_engine)_logo.png](https://upload.wikimedia.org/wikipedia/commons/7/79/Docker_(container_engine)_logo.png)
-
-Docker is a software container platform. It is used to eliminate compatibility problems when working with different operating systems. It is based on the idea of that you can package your code with dependencies into a deployable unit called a container. Images are an artifact, essentially a snapshot of the contents a container is meant to run. 
-
-ENMOD is a Docker image designed to download data from Global Biodiversity Information Facility (GBIF), generate ocurrence files, ocurrence maps, and generate ENMs on batch mode. 
-
-All the scripts, libraries and packages necessary to use ENMOD come pre-installed. In order to use ENMOD you'll need to install Docker on your operating system
-
-Visit [Docker Website](https://docs.docker.com/get-started/) For an installation and basic use walkthrough.
-
-### Prerequisites
+### Getting started
 
 For this project we'll work with 4 species in the Genus *Mammillaria* a group of small cacti mostly restricted to Mexico.
 
-![test](https://c1.staticflickr.com/1/172/381358212_db9473bf89_b.jpg)
+<img src="https://c1.staticflickr.com/1/172/381358212_db9473bf89_b.jpg" width="100">
+*Mammillaria haageana*
 
-<img src="https://c1.staticflickr.com/1/172/381358212_db9473bf89_b.jpg" width="48">
-
-- You will need a working directory:
+- For this tutorial will use the working directory "Mammillaria" :
 
 `home/user/documents/Mammillaria`
 
@@ -32,58 +19,65 @@ Containing:
 
 ![Working Directory](http://i.imgur.com/mQQRt6E.png)
 
-- An empty subdirectory named data_out:
+- An empty subdirectory `data_out`:
 
-`home/user/documents/Mammillaria/data_out`
-
-- A subdirectory named data_in with the following data:
-
-`home/user/documents/Mammillaria/data_in`
+- A subdirectory `data_in` with the following data:
 
 ![Data_In](http://i.imgur.com/XroIZjE.png)
 
- - An input file,  "species.csv"
+ - An input file,  `species.csv`
  
-![Species.csv](http://i.imgur.com/Y73RmxJ.png)
-
-(Required for `Records.R`)
+ ![Species.csv](http://i.imgur.com/bl5eKis.png)
+ 
+Required only for `Records.R`
 
  - Raster files from [WorldClim Database ](http://www.worldclim.org/) in `.asc` format in a directory named "rasters".
+ Required for `Vars.R` and `Maxent.R`
 
 ![asc_files](http://i.imgur.com/giByU8q.png)
-Raster files must be clipped to coincide with your species distribution. If species records fall outside your raster coordinates  you will get NA data.
 
-(Required for `Vars.R` and `Maxent.R`)
+Raster files must be clipped to coincide with your species distribution. If species records fall outside your raster coordinates you will get NA data.
 
-- Docker software
+
+### Docker
+
+![https://upload.wikimedia.org/wikipedia/commons/7/79/Docker_(container_engine)_logo.png](https://upload.wikimedia.org/wikipedia/commons/7/79/Docker_(container_engine)_logo.png)
+
+Docker is a software container platform. It is used to eliminate compatibility problems when working with different operating systems. It is based on the idea of that you can package your code with dependencies into a deployable unit called a container. Images are essentially a snapshot of the contents a container is meant to run. 
+
+ENMOD is a Docker image designed to download data from Global Biodiversity Information Facility (GBIF), generate ocurrence files, ocurrence maps, and generate ENMs on batch mode. 
+
+All the scripts, libraries and packages necessary to use ENMOD come pre-installed. In order to use ENMOD you'll need to install Docker on your operating system
+
+Visit [Docker Website](https://docs.docker.com/get-started/) For an installation and basic walkthrough.
 
 You need to make sure Docker is properly working by writing a command like `docker ps -a`, if an error like the following appears:
 
 `Cannot connect to the Docker daemon. Is the docker daemon running on this host?`
 
- You need to start the docker service by writing:
+ You must start the docker service by writing:
  
  `sudo service docker start` or  `sudo dockerd` 
  
-Once everything is in order you can dowload the latest ENMOD image using the following command:
+Once everything is in order, you can dowload the latest ENMOD image using the following command:
 
 ```
 docker pull ghuertaramos/enmod:latest
 ```
 
 
-## Running the tests
+## Running ENMOD
 
 Once the image is pulled from docker cloud. 
 
-- We set a shortname for the path of our working directory
+- We will set a shortname for the path of our working directory
 
 `mydatapath=/home/user/Documents/Mammillaria/`
 
-- Next we download the records for the species using `Records.R`:
+- We can begin our work by downloading the records for the species in `species.csv` using `Records.R` with the following command:
 
 ```
-docker run -ephemeral -v $mydatapath:/ENMOD/data ghuertaramos/enmod Rscript Records.R
+docker run --rm -v $mydatapath:/ENMOD/data ghuertaramos/enmod Rscript Records.R
 ```
 ![Records.R](http://i.imgur.com/eSn561j.png)
 
@@ -91,76 +85,80 @@ We have now obtained a record file for each species:
 
 ![Records_Files](http://i.imgur.com/Y73RmxJ.png)
 
-Records.R by default deletes columns generaly not relevant or redundant. This script selects the information in the fields:
+`Records.R` by default deletes columns which are redundant or rarely relevant. This script selects the information on the fields:
 lon, lat, locality, gbifID, elevation, identifiedBy, identifier, recordNumber and occurrenceRemarks.
 
-Even after this selection, if we open a file we'll notice the output from gbif can be quite messy many records are repeated (yellow) and some records don't have geographic coordinates (green)
+Record files generated by `Records.R` can be quite messy, many records are repeated (yellow) and some records may not have geographic coordinates (green)
 
 ![Records.RAW](http://i.imgur.com/V37h8wz.png)
 
-To improve the results we can use the `Clean.R` function in ENMOD:
+To improve these results we can use the `Clean.R` function in ENMOD:
 
-`docker run -ephemeral -v $mydatapath:/ENMOD/data enmod Rscript Clean.R`
+`docker run --rm -v $mydatapath:/ENMOD/data enmod Rscript Clean.R`
 
 ![Clean.R](http://i.imgur.com/r3xtfpe.png)
  
- Now the files only contains unique records with geographic coordinates. For now, this scripts deletes records outside the americas
- The exact ranges are:
+ Now the files  contains only unique records with geographic coordinates. It is important to notice that for now, this script also deletes records outside the americas.
+ The exact ranges are. 
 Longitude: -131,-38
 Latitude: -49,55
  
  ![Clean.RAW](http://i.imgur.com/2bzpJky.png)
  
- The maps generated by this script show each record, we may now check if accoording to the our knowledge of the species records seem correct.
+ The maps generated by this script show each record on a simple map, we may now check for inconsistencies and probable errors.
  
  ![CleanMaps](http://i.imgur.com/w83ixVc.jpg)
  
-Some records aren’t very evenly distributed, but some of this is sampling effort isn’t very evenly distributed. 
+Some records aren’t very evenly distributed, probably due to sampling effort. To compensate for that, we can divide the map up into a grid and randomly draw a single point from each grid square. 
 
-To compensate for that, we can divide the map up into a grid and randomly draw a single point from each grid square. 
+The function `Rarf.R` does exactly that. This script is disabled for species with less than 30 records by default.
 
-The function `Rarf.R` dows exactly that. This script is disabled for species with less than 30 records by default.
-
-`docker run -ephemeral -v $mydatapath:/ENMOD/data enmod Rscript Rarf.R`
+`docker run --rm -v $mydatapath:/ENMOD/data enmod Rscript Rarf.R`
 
 ![Rarf.R](http://i.imgur.com/xgnDvuX.png)
 
  ![RarfMaps](http://i.imgur.com/w83ixVc.jpg)
 
-The number of records is reduced, for example for *M. haageana* we had 500 records but after rarefaction we obtained 130 records.
+The number of records is reduced, for example  *M. haageana* had 500 records but after rarefaction we obtained 130 records.
 
 We also need some points that define regions our species aren’t found. 
 One option is to define a “background” region to sample at random, which (we hope) captures environmental conditions that our species could disperse to, but haven’t.
 
-To do this, we’ll define circular regions, each with a radius of 50km, centered on each point in our presence list, then draw random points that must fall within those circles. Effectively, this draws random points that must be within 50 of a point where our species have records.
-
-`docker run -ephemeral -v $mydatapath:/ENMOD/data enmod Rscript Pseudo.R`
+`docker run --rm -v $mydatapath:/ENMOD/data enmod Rscript Pseudo.R`
 
 ![Pseudo.R](http://i.imgur.com/OFyeROh.png)
 
+We have defined circles with a radius of 50km, centered on each point in our presence list, then draw random points that  fall within those circles. 
 
 ![Pseudomaps](http://i.imgur.com/4UTbbGe.jpg)
 
 
-The following scripts are necessary to diminish the effect of variable correlation in the models, since they mean the same thing (in terms of inference). 
+The following scripts are necessary to diminish the effect of variable autocorrelation in the models, since they mean the same thing (in terms of inference). 
 
 First `Vars.R` enables us to extract climatic data from rasters based on our species records. 
 
-`docker run -ephemeral -v $mydatapath:/ENMOD/data enmod Rscript Vars.R`
+`docker run --rm -v $mydatapath:/ENMOD/data enmod Rscript Vars.R`
 
 ![Vars.R](http://i.imgur.com/ELnHhGh.png)
 
 ![Vars.RAW](http://i.imgur.com/UmMKgKm.png "Bioclimatic variable data for M. columbiana")
 
-From the extracted data we can use  ` Corrls.R `to generate correlation coefficients, significancies and plots from climatic data. In order to select non correlated bioclimatic variables to include in the model.
+From the extracted data we can use  ` Corrls.R `to generate correlation coefficients, significancies and plots from climatic data. This allows us to select non correlated bioclimatic variables to include in the model.
 
-`docker run -ephemeral -v $mydatapath:/ENMOD/data enmod Rscript Corrls.R`
+`docker run --rm -v $mydatapath:/ENMOD/data enmod Rscript Corrls.R`
 
 ![Corrls.R](http://i.imgur.com/fhjeX7f.png)
+
+Correlation files include correlation values and significancies, but we can conveniently analyse the data thorugh the generated plots for each species.
+
+![CorrlsPlot](http://i.imgur.com/nBmPJg3.png)
+
+
  
  **Maxent.R**
  
 Generate Ecological Niche Model for input species, it also generates output data and graphs for model evaluation.
+
 
 
 
@@ -175,7 +173,7 @@ The exact ranges are:
 Longitude: -131,-38
 Latitude: -49,55
 
-## Authors
+## Author
 
 * **Guillermo Huerta Ramos** - *Initial work* - [ghuertaramos](https://github.com/ghuertaramos)
 
