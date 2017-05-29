@@ -34,7 +34,7 @@ Docker image to develop and analize ecological niche models (ENM).
  
  **Maxent.R**
  
-Generate Ecological Niche Model for input species, it also generates output data and graphs for model evaluation.
+Generate Ecological Niche Model for input species, it also generates output data and graphs for model evaluation user provided 'bil' format rasters
 
  
 ### Coming  soon:
@@ -46,7 +46,8 @@ Merge data from other databases.
  **Thinsp.R**
  
  Spatial rarefaction using ThinsSP algorithm (Aiello-Lammens *et al*. 2015)
-
+ 
+ 
 ## Getting Started
 
 The scripts are intended to work as a single pipeline. Future versions will include compability with user provided databases.
@@ -59,7 +60,7 @@ Current version was designed as a final project for the course ["Introduction to
 
 
 
- A tutorial on the use of ENMOD is available at [tutorial.md](https://github.com/ghuertaramos/ENMOD/blob/master/Tutorial.md)
+ A tutorial on the use of ENMOD is available at [Tutorial.md](https://github.com/ghuertaramos/ENMOD/blob/master/Tutorial.md)
 
 ![ ](https://github.com/ghuertaramos/ENMOD/blob/master/mdneflow.png  "Workflow")
 
@@ -100,7 +101,7 @@ Raster files must be clipped to coincide with your species distribution. If spec
 Dowload the latest image using the following command:
 
 ```
-docker pull ghuertaramos/enmod:latest
+docker pull ghuertaramos/enmod	
 ```
 
 
@@ -113,8 +114,8 @@ Once the image is pulled from docker cloud.
 ```
 mydata=/home/user/Documents/mydirectory/
 ```
-This directory must contain `especies.csv` file and `rasters` directory with 19 `.asc` files from worldclim database.
-
+This directory must contain `especies.csv` file and `rasters` directory with 19 `.bil` files from worldclim database. Available at:
+[ http://biogeo.ucdavis.edu/data/climate/worldclim/1_4/grid/cur/bio_10m_bil.zip](http://biogeo.ucdavis.edu/data/climate/worldclim/1_4/grid/cur/bio_10m_bil.zip) 
 - Run the scripts using the following command:
 
 ```
