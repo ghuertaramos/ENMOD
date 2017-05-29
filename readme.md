@@ -112,7 +112,7 @@ Once the image is pulled from docker cloud.
 - You may set a shortname for the path of your working directory
 
 ```
-mydata=/home/user/Documents/mydirectory/
+mydatapath=/home/user/Documents/mydirectory/
 ```
 This directory must contain `species.csv` file and `rasters` directory with 19 `.bil` files from worldclim database. Available at:
 [ http://biogeo.ucdavis.edu/data/climate/worldclim/1_4/grid/cur/bio_10m_bil.zip](http://biogeo.ucdavis.edu/data/climate/worldclim/1_4/grid/cur/bio_10m_bil.zip) 
@@ -125,7 +125,7 @@ The command beaks down as:
 
 The flag `--rm` deletes the container after the script execution.
 
-The local directory shortened in  `mydata` is mounted in a new container  using the flag `-v`
+The local directory shortened in  `mydatapath` is mounted in a new container  using the flag `-v`
 
 `:/ENMOD/data` is the name of the volume inside the container, this name must be mantained for the scripts to work.
 
