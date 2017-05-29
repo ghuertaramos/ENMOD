@@ -76,7 +76,7 @@ Current version was designed as a final project for the course ["Introduction to
 
 - You will need a working directory containing:
 
- - An input file,  "especies.csv"
+ - An input file,  "species.csv"
 
 (Required for `Records.R`)
 
@@ -114,7 +114,7 @@ Once the image is pulled from docker cloud.
 ```
 mydata=/home/user/Documents/mydirectory/
 ```
-This directory must contain `especies.csv` file and `rasters` directory with 19 `.bil` files from worldclim database. Available at:
+This directory must contain `species.csv` file and `rasters` directory with 19 `.bil` files from worldclim database. Available at:
 [ http://biogeo.ucdavis.edu/data/climate/worldclim/1_4/grid/cur/bio_10m_bil.zip](http://biogeo.ucdavis.edu/data/climate/worldclim/1_4/grid/cur/bio_10m_bil.zip) 
 - Run the scripts using the following command:
 
