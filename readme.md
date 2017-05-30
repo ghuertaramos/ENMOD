@@ -59,13 +59,14 @@ Generating ENMs is not an easy task, it demands a lot of knowledge on species bi
 Current version was designed as a final project for the course ["Introduction to bioinformatics and reproducible research  for genetic analyses"](https://github.com/AliciaMstt/BioinfInvRepro2017-II) by Alicia Yanes Mastretta and Azalea García 
 
 
-
- A tutorial on the use of ENMOD is available at [Tutorial.md](https://github.com/ghuertaramos/ENMOD/blob/master/Tutorial.md)
-
 ![ ](https://github.com/ghuertaramos/ENMOD/blob/master/mdneflow.png  "Workflow")
 
 
 ### Prerequisites
+
+
+ A tutorial on the use of ENMOD is available at [Tutorial.md](https://github.com/ghuertaramos/ENMOD/blob/master/Tutorial.md)
+
 
 - Docker software installed
 
@@ -75,8 +76,10 @@ Current version was designed as a final project for the course ["Introduction to
 
 
 - You will need a working directory containing:
-
- - An input file,  "species.csv"
+ 
+ A subdirectory  `data_in`with the following files
+ 
+ - An input file inside ,  "species.csv"
 
 (Required for `Records.R`)
 
@@ -94,6 +97,8 @@ This file must include a column with the species names you are interested.  Use 
 Raster files must be clipped to coincide with your species distribution. If species records fall outside your raster coordinates  you will get NA data.
 
 (Required for `Vars.R` and `Maxent.R`)
+
+An empty subdiectory `data_out`
 
 
 ### Installing
