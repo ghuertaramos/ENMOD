@@ -10,7 +10,8 @@ Docker image to develop and analize ecological niche models (ENM).
 
 **Records.R** 
 
- Download records from GBIF database and produce `.csv` files for query species.
+ Download records from GBIF database and produce `.csv` files for query species. 
+Please read GBIF [data user agreement](http://www.gbif.org/terms/data-user) 
  
 **Clean.R**
 
@@ -98,7 +99,7 @@ Raster files must be clipped to coincide with your species distribution. If spec
 
 (Required for `Vars.R` and `Maxent.R`)
 
-An empty subdiectory `data_out`
+An empty subdirectory `data_out`
 
 
 ### Installing
