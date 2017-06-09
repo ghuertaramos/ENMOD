@@ -12,7 +12,7 @@ library('rJava')
 
 # read rasters
 print(paste0("reading raster files"))
-rasters<- list.files("./data/data_in/rasters",pattern='bil', full.names=TRUE)
+rasters<- list.files("./data/data_in/rasters",pattern='asc', full.names=TRUE)
 
 # stack vectors to concatenate multiple vectors into a single vector along with a factor indicating where each observation originated.
 print(paste0("stacking rasters"))
