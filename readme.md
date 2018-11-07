@@ -9,7 +9,7 @@ Docker image to develop and analize ecological niche models (ENM).
  
 Important! Current version was designed as a proof of concept for the course ["Introduction to bioinformatics and reproducible research  for genetic analyses"](https://github.com/AliciaMstt/BioinfInvRepro2017-II) by Alicia Yanes Mastretta and Azalea García. 
 
-ENMs created through this pipeline are likely to be flawed. Generating ENMs is not an easy task, it demands a lot of knowledge on species biology, niche theory and niche modeling methodology. Please, carefuly evaluate every step of the pipeline and  tweak the scripts to suit your own needs. Current final ENMs are suitable at best for exploratory analysis. I'm open to questions about and I'd appreciate feedback if you use scripts from the repository.
+ENMs created through this pipeline are likely to be flawed. Generating ENMs is not an easy task, it demands a lot of knowledge on species biology, niche theory and niche modeling methodology. Please, carefuly evaluate every step of the pipeline and  tweak the scripts to suit your own needs. Current final ENMs are suitable at best for exploratory analysis. I'm open to questions and I'd appreciate feedback if you use scripts from the repository.
 
 The scripts are intended to work as a single pipeline. Future versions will include compability with user provided databases.
 
