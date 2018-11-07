@@ -2,9 +2,18 @@
 
 # Ecological Niche Modeling on Docker
 
+## Getting Started
 
 Docker image to develop and analize ecological niche models (ENM). 
  These scripts allow the user to download data from Global Biodiversity Information Facility (GBIF) to generate ocurrence files, ocurrence maps, and generate ENMs on batch mode.
+ 
+Important! Current version was designed as a proof of concept for the course ["Introduction to bioinformatics and reproducible research  for genetic analyses"](https://github.com/AliciaMstt/BioinfInvRepro2017-II) by Alicia Yanes Mastretta and Azalea García. 
+
+ENMs created through this pipeline are likely to be flawed. Generating ENMs is not an easy task, it demands a lot of knowledge on species biology, niche theory and niche modeling methodology. Please, carefuly evaluate every step of the pipeline and  tweak the scripts to suit your own needs. Current final ENMs are suitable at best for exploratory analysis. I'm open to questions about and I'd appreciate feedback if you use scripts from the repository.
+
+The scripts are intended to work as a single pipeline. Future versions will include compability with user provided databases.
+
+Be aware this is work in progress. Thus scripts may be prone to bugs and errors. 
  
 ### Current available functions are:
 
@@ -19,7 +28,7 @@ Please read GBIF [data user agreement](http://www.gbif.org/terms/data-user)
  
  **Rarf.R** 
  
- Reduce the number of records (less than 1km apart) using the grid method. It also generates maps for output records. This script is disabled for species with less than 30 records by default.
+ Reduce the number of records (closer than 1km) using a grid method. It also generates maps for output records. This script ignores data files for species with less than 30 records.
 
 **Pseudo.R**
 
@@ -48,18 +57,8 @@ Merge data from other databases.
  
  Spatial rarefaction using ThinsSP algorithm (Aiello-Lammens *et al*. 2015)
  
+ ### Workflow
  
-## Getting Started
-
-The scripts are intended to work as a single pipeline. Future versions will include compability with user provided databases.
-
-Be aware this is work in progress. Thus scripts may be prone to bugs and errors. 
-
-Generating ENMs is not an easy task, it demands a lot of knowledge on species biology, niche theory and niche modeling methodology. Please, carefuly evaluate every step of the pipeline and  tweak the scripts to suit your own needs. Current final ENMs are suitable at best for exploratory analysis 
-
-Current version was designed as a final project for the course ["Introduction to bioinformatics and reproducible research  for genetic analyses"](https://github.com/AliciaMstt/BioinfInvRepro2017-II) by Alicia Yanes Mastretta and Azalea García 
-
-
 ![ ](https://github.com/ghuertaramos/ENMOD/blob/master/mdneflow.png  "Workflow")
 
 
