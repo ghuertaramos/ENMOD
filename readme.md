@@ -2,6 +2,8 @@
 
 # Ecological Niche Modeling on Docker
 
+# This repository will no longer be updated, if you are interested in reproducible pipelines for ENMs check [KUENM](https://github.com/marlonecobos/kuenm)
+
 ## Getting Started
 
 Docker image to develop and analize ecological niche models (ENM). 
